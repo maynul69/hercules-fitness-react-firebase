@@ -39,17 +39,21 @@ const Header = () => {
               <NavLink className="mx-2 text-decoration-none" to="/services">
                 Services
               </NavLink>
-              {user?.email ? 
-                <Button
-                variant="light">Log-Out</Button>
-               : 
-                <NavLink className="mx-2 text-decoration-none" to="/login">
-                  Log-In
-                </NavLink>
-              }
-              <NavLink className="mx-2 text-decoration-none" to="/register">
-                Register
-              </NavLink>
+              {user?.email ? (
+                <Button variant="light" onClick={logOut}>
+                  Log-Out
+                </Button>
+              ) : (
+                <div>
+                  <NavLink className="mx-2 text-decoration-none" to="/login">
+                    Log-In
+                  </NavLink>
+                  <NavLink className="mx-2 text-decoration-none" to="/register">
+                    Register
+                  </NavLink>
+                </div>
+              )}
+
               <Navbar.Text>
                 Logged in as: <a href="#login">{user?.displayName}</a>
               </Navbar.Text>

@@ -2,7 +2,15 @@
 import './App.css';
 
 import Home from './components/Home/Home/Home';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  useHistory,
+  useLocation
+} from "react-router-dom";
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import Packages from './components/Packages/Packages';
 import Trainners from './components/Trainners/Trainners';
@@ -12,6 +20,8 @@ import LogIn from './components/LogIn/LogIn/LogIn';
 import Register from './components/Register/Register/Register';
 import Footer from './components/Shared/Footer/Footer';
 import Authprovider from './context/Authprovider';
+import ServiceDetail from './components/ServiceDetail/ServiceDetail';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 
 
@@ -37,12 +47,15 @@ function App() {
             <Route path="/services">
               <Services></Services>
             </Route>
-            <Route path="/packages">
+            <PrivateRoute path="/packages">
               <Packages></Packages>
-            </Route>
-            <Route path="/trainners">
+            </PrivateRoute>
+            <PrivateRoute path="/trainners">
               <Trainners></Trainners>
-            </Route>
+            </PrivateRoute>
+            <PrivateRoute path="/servicedetail/:name">
+              <ServiceDetail></ServiceDetail>
+            </PrivateRoute>
 
             <Route exact path="*">
               <ErrorPage></ErrorPage>

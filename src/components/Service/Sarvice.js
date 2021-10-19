@@ -1,6 +1,7 @@
 import Button from '@restart/ui/esm/Button';
 import React from 'react';
 import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import ReadMoreReact from "read-more-react";
 
 
@@ -24,7 +25,9 @@ const Sarvice = (props) => {
                 readMoreText={"read more..."}
               />
             </Card.Text>
-            <Button className="btn btn-primary">Details</Button>
+            <Link to={`/servicedetail/${name}`}>
+              <Button className="btn btn-primary">Details</Button>
+            </Link>
           </Card.Body>
         </Card>
       </div>
