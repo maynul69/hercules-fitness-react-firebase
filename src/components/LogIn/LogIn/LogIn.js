@@ -10,17 +10,7 @@ import { useForm } from 'react-hook-form';
 const LogIn = () => {
 
 
-    // const {
-    //     register,
-    //     handleSubmit,
-    //     watch,
-    //     formState: { errors },
-    //   } = useForm();
-    //   const onSubmit = (data) =>{
-    //       loginWithEmailPass(data.email, data.password).then((user) => {
-    //         console.log(user);
-    //         history.push("/home");
-    //       });
+    
     const { signInUsingGoogle, loginWithEmailPass } = useAuth();
 
     const location = useLocation();
@@ -35,19 +25,30 @@ const LogIn = () => {
       
            
 
-    
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+      } = useForm();
+      const onSubmit = (data) =>{
+          loginWithEmailPass(data.email, data.password).then((user) => {
+            console.log(user);
+            history.push("/home");
+          });
+        }
     return (
       <div className="container my-5">
         <h4>Sign-In With Email-Password</h4>
         <div className="container my-5">
-          <Form>
-            <Form.Group
-              className="mb-3"
-              controlId="formBasicEmail"
-            //   onSubmit={handleSubmit(onSubmit)}
-            >
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                {...register("email", { required: true })}
+              />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
               </Form.Text>
@@ -55,7 +56,11 @@ const LogIn = () => {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                {...register("password", { required: true })}
+              />
             </Form.Group>
 
             <Button variant="primary" type="submit">

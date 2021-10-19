@@ -52,18 +52,20 @@ const useFirebase = () => {
       });
   };
 
-//   const loginWithEmailPass=(email,password)=>{
-//     signInWithEmailAndPassword(auth, email, password)
-//       .then((userCredential) => {
+  const loginWithEmailPass=(email,password)=>{
+    return signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
        
-//         return user = userCredential.user;
+        const user = userCredential.user;
+        setUser(user)
+        return user;
        
-//       })
-//       .catch((error) => {
-//         const errorCode = error.code;
-//         const errorMessage = error.message;
-//       });
-//   }
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  }
   const logOut = () => {
     signOut(auth)
       .then(() => {})
@@ -78,7 +80,7 @@ const useFirebase = () => {
     logOut,
     isLoading,
     regWithEmailPass,
-    // loginWithEmailPass,
+    loginWithEmailPass,
   };
 };
 export default useFirebase;
