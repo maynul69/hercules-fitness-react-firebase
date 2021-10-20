@@ -8,7 +8,7 @@ import Motto from '../TrainningStrategy/Motto';
 
 const Home = () => {
     return (
-        <div id='home'>
+        <div id='home' >
             <Slider></Slider>
             <Services></Services>
             <Motto></Motto>
